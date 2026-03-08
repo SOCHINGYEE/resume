@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&family=Inter:wght@200;300;400;500&family=Quicksand:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #faf9f7;
+            --bg-secondary: #f5f3f0;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --accent: #c9a962;
+            --accent-light: #e8dcc8;
+            --border: #e5e2dc;
+            --shadow: rgba(0, 0, 0, 0.04);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+        }
+
+        /* Resume Container */
+        .resume {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            min-height: auto;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            box-shadow: 0 0 100px var(--shadow);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--bg-secondary);
+            padding: 40px 35px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+        }
+
+        .profile-section {
+            margin-bottom: 30px;
+        }
+
+        .name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 18px;
+            color: var(--text-primary);
+        }
+
+        .job-intention-badge {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 0;
+        }
+
+        .badge-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .badge-value {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            letter-spacing: 0.5px;
+        }
+
+        .divider {
+            width: 30px;
+            height: 1px;
+            background: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Contact Info */
+        .contact-section {
+            margin-bottom: 25px;
+        }
+
+        .section-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-icon {
+            width: 18px;
+            height: 18px;
+            stroke: var(--accent);
+            stroke-width: 1.5;
+            fill: none;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Education */
+        .education-section {
+            margin-bottom: 25px;
+        }
+
+        .education-item {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            padding: 8px 0;
+            font-size: 0.85rem;
+        }
+
+        .education-school {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .education-major {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Languages */
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.85rem;
+        }
+
+        .language-item:last-child {
+            border-bottom: none;
+        }
+
+        .language-name {
+            font-weight: 400;
+            color: var(--text-primary);
+        }
+
+        .language-level {
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 35px 40px;
+        }
+
+        .content-section {
+            margin-bottom: 25px;
+        }
+
+        .content-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .section-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 400;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+            margin-left: 10px;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .skill-category {
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .skill-category:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .skill-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+        }
+
+        .skill-tag {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            background: var(--bg-secondary);
+            padding: 2px 8px;
+            border-radius: 2px;
+        }
+
+        .skill-description {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Highlights */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .highlight-item {
+            text-align: center;
+            padding: 15px 10px;
+            background: var(--bg-secondary);
+            border-radius: 2px;
+        }
+
+        .highlight-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .highlight-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        /* Platform Table */
+        .platform-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .platform-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .platform-item:last-child {
+            border-bottom: none;
+        }
+
+        .platform-name {
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .platform-type {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .platform-type-stat {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            width: 100%;
+        }
+
+        .platform-stat-inline {
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-left: 8px;
+            flex-shrink: 0;
+        }
+
+        /* Job Intentions */
+        .intentions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .intention-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 15px;
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .intention-item:hover, .intention-item-inline:hover {
+            background: var(--border);
+            transform: translateX(5px);
+        }
+
+        .intention-item-inline{
+            display: flex;
+            flex-direction: column;
+             padding: 12px 15px;
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .intention-item-block {
+            display: flex;
+        }
+
+        .intention-item-block .intention-bullet {
+            margin-right: 12px;
+        }
+        .intention-bullet {
+            width: 5px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .intention-content {
+            width: 100%;
+        }
+
+        .intention-content h4 {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+      
+
+    
+        .work-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .work-date {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .work-info {
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .intention-content p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .work-details {
+            margin-top: 8px;
+        }
+
+        .work-details p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            line-height: 1.6;
+        }
+
+        .work-details p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .resume {
+                box-shadow: none;
+                max-width: 100%;
+            }
+
+            .intention-item:hover {
+                transform: none;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .resume {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                padding: 50px 40px;
+            }
+
+            .main-content {
+                padding: 50px 40px;
+            }
+
+            .highlights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .platform-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="resume">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="profile-section">
+                <h1 class="name">苏静仪</h1>
+                <div class="job-intention-badge">
+                    <p class="section-label">求职意向</p>
+                    <span class="badge-value">项目助理</span>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <p class="section-label">联系方式</p>
+
+                <div class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    <span>chingyeeso@foxmail.com</span>
+                </div>
+
+                <div class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24">
+                        <path
+                            d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.045c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z" />
+                    </svg>
+                    <span>CHINGYEE_SO</span>
+                </div>
+
+                <div class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    <span>广州 / 佛山 </span>
+                </div>
+            </div>
+
+            <div class="education-section">
+                <p class="section-label">教育背景</p>
+                <div class="education-item">
+                    <span class="education-school">西安科技大学</span>
+                    <span class="education-major">物联网工程</span>
+                </div>
+            </div>
+
+            <div class="languages-section">
+                <p class="section-label">语言能力</p>
+
+                <div class="language-item">
+                    <span class="language-name">粤语</span>
+                    <span class="language-level">母语</span>
+                </div>
+
+                <div class="language-item">
+                    <span class="language-name">普通话</span>
+                    <span class="language-level">流利</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Highlights -->
+            <section class="content-section">
+                <div class="highlights-grid">
+                    <div class="highlight-item">
+                        <div class="highlight-value">10k+</div>
+                        <div class="highlight-label">单条播放量</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-value">2</div>
+                        <div class="highlight-label">平台运营</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-value">粤语</div>
+                        <div class="highlight-label">无障碍沟通</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills -->
+            <section class="content-section">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">核心技能</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <div class="skill-header">
+                            <h3 class="skill-name">视频拍摄与制作</h3>
+                            <span class="skill-tag">Video</span>
+                        </div>
+                        <p class="skill-description">
+                            擅长演出活动拍摄。掌握灰片拍摄流程，熟练使用达芬奇进行专业调色，可实现电影感、胶片风、日系清新等多种视觉风格。善用AI的语音识别模型给视频添加口播字幕，并通过适当的prompt来提高字幕识别的准确度，提升观众互动体验。
+                        </p>
+                        <p class="skill-description">
+                            具备视频营销号兼职代拍经验，可独立完成跨区域外拍任务，高效执行拍摄与素材传输，确保内容及时交付。
+                        </p>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-header">
+                            <h3 class="skill-name">摄影与后期</h3>
+                            <span class="skill-tag">Photo</span>
+                        </div>
+                        <p class="skill-description">
+                            擅长人像摄影，具备独特的构图与光影把控能力。熟练使用像素蛋糕进行专业级人像精修，色彩审美在线，能根据场景需求调整画面风格，满足多元化视觉需求。
+                        </p>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-header">
+                            <h3 class="skill-name">内容运营</h3>
+                            <span class="skill-tag">Social</span>
+                        </div>
+                        <p class="skill-description">
+                            小红书、抖音多平台运营经验，熟悉平台算法与用户喜好。具备爆款内容制作能力，多条直拍视频播放量破万，数据驱动内容持续优化。了解用户想看的内容类型，能根据用户需求调整内容策略，且着重研究如何提升视频质量。
+                        </p>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-header">
+                            <h3 class="skill-name">AI工具应用</h3>
+                            <span class="skill-tag">AI</span>
+                        </div>
+                        <p class="skill-description">
+                            拥有多年前端开发经验，积累了扎实的工程实践能力。在技术变革浪潮中，我主动拥抱AI，借助Vibe
+                            Coding平台将原有开发经验与AI工具深度融合，不仅快速掌握AI辅助编程技能，更能精准调试AI输出的代码，解决潜在问题，完成从传统开发到智能开发的顺利转型。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Platform Performance -->
+            <section class="content-section">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">平台成果</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="platform-list">
+                    <div class="platform-item">
+                        <span class="platform-name">小红书、抖音</span>
+                        <span class="platform-type-stat">舞台直拍内容无投放任何流量 <span class="platform-stat-inline">10,000+
+                                播放</span></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Job Intentions -->
+            <section class="content-section">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2 class="section-title">工作经历</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="intentions-list">
+                    <div class="intention-item">
+                        <div class="intention-bullet"></div>
+                        <div class="intention-content">
+                            <h4>
+                                <div class="work-item">
+                                    <div class="work-date">2022.12-2026.01</div>
+                                    <div class="work-info">时空立方数字科技有限公司(驻网易) / 前端开发工程师</div>
+                                </div>
+                            </h4>
+                            <div class="work-details">
+                                <p>负责部门运维中台管理系统的前端架构迭代、核心功能开发与性能优化。</p>
+                                <p>基于React Hooks封装通用组件（表单、列表、弹窗等），集成ChatUI，对接AI大模型接口，实现基于业务的问答功能。</p>
+                                <p>在内部企业APP内嵌H5 WebView应用，辅助机房巡检人员在手机端完成日常拍照、记录等机房巡检任务。</p>
+                                <p>AI问答模块月使用率达75%，减少人工咨询量，方便机房人员在手机端即可完成巡检打卡记录。</p>
+                                <p>针对运维系统多业务线工单需要频繁的痛点，使用Formily+Antd+React搭建了低代码表单平台，支持业务人员通过可视化配置生成表单，降低开发周期，提升需求响应速度。基于Formily自定义类型validator，适配特殊业务需求，扩展Formily原生能力，生成JSON配置文件并持久化存储，通过JSON配置快速渲染/更改表单，自动对接后端接口完成数据的提交和回显，无需前端重复开发，业务部门满意度达90%。
+                                </p>
+                                <p>组内前端技术分享，诸如基于AI模型TensorFlow实现各种人体轮廓识别的扩展功能。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="intention-item">
+                        <div class="intention-bullet"></div>
+                        <div class="intention-content">
+                            <h4>
+                                <div class="work-item">
+                                    <div class="work-date">2021.09-2022.09</div>
+                                    <div class="work-info">蜗牛保险经纪 / 前端开发工程师</div>
+                                </div>
+                            </h4>
+                            <div class="work-details">
+                                <p>基于React作为主应用，使用微前端框架qiankun，在主应用中挂载其他React子应用与Vue子应
+                                    用。父子应用间通过注册时的props或initGlobalState进行通信，实现核心状态共享，同事借助
+                                    路由跳转串联不同业务项目，大幅降低重构与迁移成本，提升开发迭代效率。</p>
+                                </p>
+                                <p>基于Taro+React+Ts技术栈的保险经纪小程序，聚焦保单管理、客户管理等核心业务场景，为经
+                                    纪人提供高效便捷的移动办公工具。并且在小程序中内嵌Webview，无缝整合已有H5页面的活动
+                                    页面，助力微信端私域流量的精细化运营与转化</p>
+                                <p>基于微信OAuth协议，实现网页的授权，并适配企业微信、微信公众号，确保用户可在 H5 端顺
+                                    畅完成投保操作，优化跨平台投保体验。</p>
+                                <p>负责公司官网（维护公司官网 https://www.woniubaoxian.com/about.html）的日常维护与迭
+                                    代，保障官网信息及时更新、运行稳定，为用户提供权威的企业信息查询与品牌展示窗口。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="intention-item-inline">
+                      <div class="intention-item-block">
+                          <div class="intention-bullet"></div>
+                        <div class="intention-content">
+                            <h4>
+                                <div class="work-item">
+                                    <div class="work-date">2020.07-2021.08</div>
+                                    <div class="work-info">广州心娱网络</div>
+                                </div>
+                            </h4>
+                        </div>
+                      </div>
+
+                       <div class="intention-item-block">
+                         <div class="intention-bullet"></div>
+                        <div class="intention-content">
+                            <h4>
+                                <div class="work-item">
+                                    <div class="work-date">2019.12-2020.06</div>
+                                    <div class="work-info">BIGO</div>
+                                </div>
+                            </h4>
+                        </div>
+                       </div>
+
+                        <div class="intention-item-block">
+                            <div class="intention-bullet"></div>
+                        <div class="intention-content">
+                            <h4>
+                                <div class="work-item">
+                                    <div class="work-date">2018.01-2019.11</div>
+                                    <div class="work-info">广州卓游信息科技有限公司</div>
+                                </div>
+                            </h4>
+                        </div>
+                        </div>
+
+                        <div class="intention-item-block">
+                            <div class="intention-bullet"></div>
+                        <div class="intention-content">
+                            <h4>
+                                <div class="work-item">
+                                    <div class="work-date">2017.01-2017.12</div>
+                                    <div class="work-info">ZAKER</div>
+                                </div>
+                            </h4>
+                        </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <!-- <p class="footer-quote">"用镜头捕捉瞬间，用色彩讲述故事"</p> -->
+            </footer>
+        </main>
+    </div>
+</body>
+
+</html>
