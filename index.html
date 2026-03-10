@@ -36,23 +36,26 @@
             letter-spacing: 0.02em;
         }
 
-        /* Resume Container */
+        /* Resume Container - A4 Size */
         .resume {
-            max-width: 1000px;
+            width: 210mm;
+            min-height: 297mm;
+            max-width: 210mm;
             margin: 0 auto;
             background: white;
-            min-height: auto;
             display: grid;
-            grid-template-columns: 320px 1fr;
+            grid-template-columns: 70mm 1fr;
             box-shadow: 0 0 100px var(--shadow);
         }
 
-        /* Sidebar */
+        /* Sidebar - Fixed width for A4 */
         .sidebar {
             background: var(--bg-secondary);
-            padding: 40px 35px;
+            padding: 30px 20px;
             position: relative;
             overflow: hidden;
+            width: 70mm;
+            flex-shrink: 0;
         }
 
         .sidebar::before {
@@ -197,9 +200,11 @@
             letter-spacing: 2px;
         }
 
-        /* Main Content */
+        /* Main Content - Adaptive width */
         .main-content {
-            padding: 35px 40px;
+            padding: 30px 25px;
+            flex: 1;
+            min-width: 0;
         }
 
         .content-section {
@@ -574,14 +579,14 @@
                 <p class="section-label">语言能力</p>
 
                 <div class="language-item">
-                    <span class="language-name">粤语</span>
-                    <span class="language-level">母语</span>
+                    <span class="language-name">英语</span>
+                    <span class="language-level">CET-6</span>
                 </div>
 
-                <div class="language-item">
+                <!-- <div class="language-item">
                     <span class="language-name">普通话</span>
                     <span class="language-level">流利</span>
-                </div>
+                </div> -->
             </div>
         </aside>
 
@@ -598,10 +603,10 @@
                         <div class="highlight-value">2</div>
                         <div class="highlight-label">平台运营</div>
                     </div>
-                    <div class="highlight-item">
+                    <!-- <div class="highlight-item">
                         <div class="highlight-value">粤语</div>
                         <div class="highlight-label">无障碍沟通</div>
-                    </div>
+                    </div> -->
                 </div>
             </section>
 
@@ -671,7 +676,7 @@
                 <div class="platform-list">
                     <div class="platform-item">
                         <span class="platform-name">小红书、抖音</span>
-                        <span class="platform-type-stat">舞台直拍内容无投放任何流量 <span class="platform-stat-inline">10,000+
+                        <span class="platform-type-stat">舞台直拍内容 <span class="platform-stat-inline">10,000+
                                 播放</span></span>
                     </div>
                 </div>
