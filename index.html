@@ -36,15 +36,14 @@
             letter-spacing: 0.02em;
         }
 
-        /* Resume Container - A4 Size */
+        /* Resume Container - A4 Size with Flexbox */
         .resume {
             width: 210mm;
             min-height: 297mm;
             max-width: 210mm;
             margin: 0 auto;
             background: white;
-            display: grid;
-            grid-template-columns: 70mm 1fr;
+            display: flex;
             box-shadow: 0 0 100px var(--shadow);
         }
 
@@ -54,8 +53,9 @@
             padding: 30px 20px;
             position: relative;
             overflow: hidden;
-            width: 70mm;
+            width: 65mm;
             flex-shrink: 0;
+            height: 297mm;
         }
 
         .sidebar::before {
@@ -294,7 +294,7 @@
         /* Highlights */
         .highlights-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             margin-bottom: 20px;
         }
@@ -495,6 +495,11 @@
             .resume {
                 box-shadow: none;
                 max-width: 100%;
+                width: 100%;
+            }
+
+            .highlights-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
             }
 
             .intention-item:hover {
